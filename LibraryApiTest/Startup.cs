@@ -1,4 +1,7 @@
-﻿using Core.Entities;
+﻿using Api.Helpers;
+using Api.Interfaces;
+using Api.Services;
+using Core.Entities;
 using Infrastructure.Data.AppDbContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -46,6 +49,12 @@ public class Startup
                        ValidateAudience = false
                    };
                });
+
+        // AutoMapper
+        services.AddAutoMapper(typeof(MappingProfiles));
+
+        // Repositories
+        services.AddTransient<IAuthorsRepository, AuthorsRepository>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

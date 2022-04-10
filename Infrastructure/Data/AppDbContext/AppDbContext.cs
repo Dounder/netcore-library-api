@@ -13,5 +13,9 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
         base.OnModelCreating(builder);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-    }
+        // Excluding base entity from database
+        //builder.Entity<BaseEntity>().Metadata.SetIsTableExcludedFromMigrations(true);
+    } 
+
+    public DbSet<Author> Authors { get; set; }  
 }

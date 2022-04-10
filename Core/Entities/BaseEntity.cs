@@ -1,15 +1,20 @@
-﻿namespace Core.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Core.Entities;
 
 public class BaseEntity
 {
     // Generate a guid instead of a sequential number
     public Guid Id { get; set; } 
     // Record creation date
-    public DateTime CreatedAt { get; set; }
+    [Column(TypeName = "date")]
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow.Date;
     // Record updated date
-    public DateTime UpdatedAt { get; set; }
+    [Column(TypeName = "date")]
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow.Date;
     // Record deactivation date
-    public DateTime DisabledAt { get; set; }
+    [Column(TypeName = "date")]
+    public DateTime DisabledAt { get; set; } = DateTime.UtcNow.Date;
     // Generate a guid instead of a sequential number
-    public bool Enabled { get; set; }
+    public bool Enabled { get; set; } = true;
 }
